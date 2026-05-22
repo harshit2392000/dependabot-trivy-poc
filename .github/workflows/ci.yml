@@ -28,5 +28,5 @@ jobs:
         with:
           image-ref: test-image
           format: table
-          exit-code: '0'
+          exit-code: '1'
           severity: HIGH,CRITICAL
