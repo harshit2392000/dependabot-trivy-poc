@@ -1,0 +1,1 @@
+print("Dependabot + Trivy Test")
