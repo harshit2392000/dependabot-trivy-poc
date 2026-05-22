@@ -1,0 +1,32 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-scan:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t test-image .
+
+      - name: Run Trivy scan
+        uses: aquasecurity/trivy-action@0.28.0
+
+        with:
+          image-ref: test-image
+          format: table
+          exit-code: '0'
+          severity: HIGH,CRITICAL
